@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sesión 3 · Mi Mini Empresa Sostenible | Campamentos E‑lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.min.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-gray-900 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+    <!-- Hero -->
+    <header
+        class="flex flex-col items-center justify-center text-center py-16 px-4 animate__animated animate__fadeInDown">
+        <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-lg leading-tight">
+            Campamentos E‑lab<br /><span class="text-pink-200">Sesión 3: Mi Mini Empresa Sostenible</span>
+        </h1>
+        <p class="mt-4 text-white/90 max-w-xl">Duración: 60 minutos · Modalidad: Individual (en casa)</p>
+    </header>
+
+    <!-- Main -->
+    <main class="w-full max-w-5xl mx-auto px-4 pb-24 animate__animated animate__fadeInUp">
+        <section class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl ring-1 ring-white/30 p-8 md:p-12 space-y-10">
+            <!-- Objetivos -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><i data-lucide="target"
+                        class="w-6 h-6"></i>Objetivo general</h2>
+                <p class="mb-4">Desarrollar habilidades para identificar datos clave (mínimos, máximos) en situaciones
+                    financieras reales mediante trabajo colaborativo y reflexión sostenible.</p>
+                <h3 class="text-xl font-semibold mb-2">Objetivos específicos</h3>
+                <ul class="list-disc pl-6 space-y-2 text-sm">
+                    <li>Reconocer valores extremos en ingresos y gastos.</li>
+                    <li>Calcular promedios simples.</li>
+                    <li>Practicar escucha activa y autorreflexión en equipo.</li>
+                    <li>Expresar emociones sobre el manejo de recursos.</li>
+                    <li>Relacionar el análisis de datos con roles profesionales.</li>
+                </ul>
+            </div>
+
+            <!-- Temas -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><i data-lucide="layers"
+                        class="w-6 h-6"></i>Temas</h2>
+                <ul class="list-disc pl-6 space-y-1 text-sm">
+                    <li>Identificación de datos clave</li>
+                    <li>Extremos (mínimo, máximo)</li>
+                </ul>
+            </div>
+
+            <!-- Materiales -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><i data-lucide="clipboard-list"
+                        class="w-6 h-6"></i>Materiales</h2>
+                <p class="text-sm">Colores, lápiz, borrador, hojas.</p>
+            </div>
+
+            <!-- Pasos -->
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold flex items-center gap-2"><i data-lucide="book-open-check"
+                        class="w-6 h-6"></i>Instrucciones paso a paso</h2>
+                <!-- Intro -->
+                <article class="space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-700">Actividad introductoria · ¿Dónde se fue mi dinero?
+                        (10 min)</h3>
+                    <ol class="list-decimal pl-6 text-sm space-y-2">
+                        <li>Anota tus gastos de la última semana (ej: transporte $5.000, comida $10.000).</li>
+                        <li>Identifica gasto más alto y más bajo.</li>
+                        <li>Reflexiona: ¿En qué podrías ahorrar?</li>
+                    </ol>
+                </article>
+
+                <!-- Análisis -->
+                <article class="space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-700">Análisis · Detective de Datos (20 min)</h3>
+                    <p class="text-sm">Crea una tabla con Ingresos, Gastos y Ahorros para cada día.</p>
+                    <ul class="list-disc pl-6 text-sm space-y-1">
+                        <li>Identifica el día con más y menos gastos.</li>
+                        <li>Calcula el promedio semanal de gastos.</li>
+                    </ul>
+                </article>
+
+                <!-- Plan de Acción -->
+                <article class="space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-700">Toma de decisiones · Plan de Acción (20 min)</h3>
+                    <ul class="list-disc pl-6 text-sm space-y-1">
+                        <li>Reduce tu gasto máximo a la mitad. Planifica cómo hacerlo.</li>
+                        <li>Invierte ese ahorro en algo sostenible (ej: botella reutilizable).</li>
+                    </ul>
+                    <p class="text-sm">Reflexión escrita: ¿Cómo te sentiste al ver tus gastos? ¿Qué aprendiste?</p>
+                </article>
+
+                <!-- Cierre -->
+                <article class="space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-700">Cierre · Mi Propuesta Sostenible (10 min)</h3>
+                    <ul class="list-disc pl-6 text-sm space-y-1">
+                        <li>Crea un póster con tus datos de gastos (colores para máximos/mínimos).</li>
+                        <li>Incluye una acción concreta de ahorro sostenible.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
