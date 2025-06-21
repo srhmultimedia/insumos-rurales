@@ -1,142 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>Navegador de Sesiones</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.min.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Animated colorful fog */
-        .fog {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 70%),
-                radial-gradient(circle at 80% 0%, rgba(255, 0, 128, 0.25) 0%, transparent 70%),
-                radial-gradient(circle at 50% 100%, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
-            background-size: 200% 200%;
-            animation: moveFog 20s ease-in-out infinite;
-            pointer-events: none;
-            -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(4px);
-        }
+  <meta charset="UTF-8" />
+  <title>Navegador de Sesiones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.min.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Fog background animation */
+    body::before{content:"";position:fixed;inset:0;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);pointer-events:none;z-index:-1;}
+    .fog{position:fixed;inset:0;background:radial-gradient(circle at 10% 20%,rgba(255,255,255,.25)0%,transparent 70%),radial-gradient(circle at 80% 0%,rgba(255,0,128,.25)0%,transparent 70%),radial-gradient(circle at 50% 100%,rgba(0,255,255,.2)0%,transparent 70%);background-size:200% 200%;animation:moveFog 20s ease-in-out infinite;pointer-events:none;z-index:-2;}
+    @keyframes moveFog{0%{background-position:0 0,50% 0,50% 100%}50%{background-position:100% 50%,30% 30%,40% 70%}100%{background-position:0 0,50% 0,50% 100%}}
 
-        @keyframes moveFog {
-            0% {
-                background-position: 0% 0%, 50% 0%, 50% 100%;
-            }
+    /* card styles */
+    .card{transition:transform .25s,box-shadow .25s;}
+    .card:hover{transform:translateY(-6px)scale(1.03);box-shadow:0 12px 30px rgba(0,0,0,.25);}  
+    .card span{position:relative;}
+    .card span::after{content:"→";position:absolute;right:-1.5rem;opacity:0;transform:translateX(-10px);transition:.3s;}
+    .card:hover span::after{opacity:1;transform:translateX(0);}  
 
-            50% {
-                background-position: 100% 50%, 30% 30%, 40% 70%;
-            }
-
-            100% {
-                background-position: 0% 0%, 50% 0%, 50% 100%;
-            }
-        }
-
-        /* Card hover animation */
-        .card {
-            transition: transform .25s, box-shadow .25s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
-        }
-
-        .card span {
-            position: relative;
-        }
-
-        .card span::after {
-            content: "→";
-            position: absolute;
-            right: -1.5rem;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: .3s;
-        }
-
-        .card:hover span::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    </style>
+    /* locked card */
+    .locked{opacity:.35;filter:grayscale(90%);pointer-events:none;}
+  </style>
 </head>
-
 <body class="min-h-screen flex flex-col text-gray-900 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
-    <div class="fog"></div>
-    <!-- Hero -->
-    <header
-        class="flex flex-col items-center justify-center text-center py-14 px-4 animate__animated animate__fadeInDown">
-        <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-lg leading-tight">
-            Campamentos E-lab
-        </h1>
-        <p class="mt-3 text-white/90 text-lg max-w-2xl">Explora las sesiones de <span class="font-semibold">Lectura
-                Crítica</span> y <span class="font-semibold">Matemáticas</span>. <br>¡Haz clic en un módulo para empezar!
-        </p>
-    </header>
+  <div class="fog"></div>
+  <header class="flex flex-col items-center justify-center text-center py-14 px-4 animate__animated animate__fadeInDown">
+    <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-lg leading-tight">
+      Campamentos E-lab
+    </h1>
+    <p class="mt-3 text-white/90 text-lg max-w-2xl">Explora las sesiones de <span class="font-semibold">Lectura Crítica</span> y <span class="font-semibold">Matemáticas</span>. <br> ¡Haz clic en un módulo disponible para empezar!</p>
+  </header>
 
-    <!-- Navegador -->
-    <main class="w-full max-w-6xl mx-auto px-4 pb-24 animate__animated animate__fadeInUp space-y-10">
-        <!-- Lectura Crítica -->
-        <section>
-            <h2 class="text-2xl sm:text-3xl font-bold text-pink-100 mb-6 flex items-center gap-2"><i
-                    data-lucide="book-open" class="w-7 h-7"></i>Lectura Crítica</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="lectura-critica/sesion-1/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800">
-                    <i data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i>
-                    <span class="font-semibold">Sesión 1</span>
-                </a>
-                <a href="lectura-critica/sesion-2/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800">
-                    <i data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i>
-                    <span class="font-semibold">Sesión 2</span>
-                </a>
-                <a href="lectura-critica/sesion-3/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 3</span></a>
-                <a href="lectura-critica/sesion-4/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 4</span></a>
-            </div>
-        </section>
+  <main class="w-full max-w-6xl mx-auto px-4 pb-24 animate__animated animate__fadeInUp space-y-12">
+    <!-- helper component -->
+    <template id="tpl"></template>
 
-        <!-- Matemáticas -->
-        <section>
-            <h2 class="text-2xl sm:text-3xl font-bold text-pink-100 mb-6 flex items-center gap-2"><i
-                    data-lucide="calculator" class="w-7 h-7"></i>Matemáticas</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="matematicas/sesion-1/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 1</span></a>
-                <a href="matematicas/sesion-2/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 2</span></a>
-                <a href="matematicas/sesion-3/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 3</span></a>
-                <a href="matematicas/sesion-4/index.html"
-                    class="card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col gap-3 text-center text-gray-800"><i
-                        data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-600"></i><span
-                        class="font-semibold">Sesión 4</span></a>
-            </div>
-        </section>
-    </main>
+    <!-- Generador con JS (evita escribir 24 tarjetas manualmente) -->
+    <section id="lectura" data-prefix="lectura-critica" class="space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-pink-100 flex items-center gap-2"><i data-lucide="book-open" class="w-7 h-7"></i>Lectura Crítica</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <section id="mates" data-prefix="matematicas" class="space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-pink-100 flex items-center gap-2"><i data-lucide="calculator" class="w-7 h-7"></i>Matemáticas</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    const renderCards = (section, unlocked=4)=>{
+      const grid = section.querySelector('div');
+      const prefix = section.dataset.prefix;
+      for(let i=1;i<=12;i++){
+        const locked = i>unlocked;
+        const elem = document.createElement(locked?'div':'a');
+        elem.className=`card bg-white/80 backdrop-blur-lg rounded-xl ring-1 ring-white/30 p-6 flex flex-col items-center gap-3 text-center ${locked?'locked text-gray-600':'text-gray-800'}`;
+        if(!locked){elem.href=`${prefix}/sesion-${i}/index.html`;}
+        elem.innerHTML=`<i data-lucide="${locked?'lock':'file-text'}" class="w-10 h-10 ${locked?'text-gray-500':'text-indigo-600'}"></i><span class="font-semibold">Sesión ${i}</span>`;
+        grid.appendChild(elem);
+      }
+    };
+
+    renderCards(document.getElementById('lectura'));
+    renderCards(document.getElementById('mates'));
+    lucide.createIcons();
+  </script>
 </body>
-
 </html>
